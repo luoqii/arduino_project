@@ -18,14 +18,21 @@ void setup() {
     Serial.begin(BAUD);
     Serial.println("Serial is ready.");
 
-    BT.begin(9600);
+    BT.begin(BAUD);
 }
 
 void loop() {
   if (BT.available()) {
     val = BT.read();
+    Serial.print("read:");
     Serial.println(val);
   }
-  
+
+  for (int i = 0 ; i < 255 ; i++) {
+    Serial.print("write:");
+    Serial.println(i);
+    BT.write("abcdefjhijklmn");
+//    delay(100);
+  }
 }
 

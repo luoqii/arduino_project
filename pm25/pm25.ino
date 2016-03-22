@@ -3,8 +3,14 @@
 /**
  * 
  */
-SoftwareSerial pmSerial(11, 12); // RX, TX
+SoftwareSerial pm(11, 12); // RX, TX
 #define BAUD 9600
+
+#define BT_RXD 8
+#define BT_TXD 9
+#define BAUD 9600
+
+SoftwareSerial bt(BT_RXD, BT_TXD);
 
 // keep sync with rawData's length
 int DATA_LENGTH = 2 + 2 + 13 * 2 + 2;
@@ -29,17 +35,23 @@ void setup() {
   Serial.println("Goodnight moon!");
 
   // set the data rate for the SoftwareSerial port
-  pmSerial.begin(BAUD);
-  pmSerial.println("Hello, world?");
+  pm.begin(BAUD);
+  pm.println("Hello, world?");
 
   rawData[0] = C_0X42;
   rawData[1] = C_0X4D;
+
+      Serial.println("bt begin");
+      bt.begin(BAUD);
+      Serial.println("bt begin finish.");
 }
 
 void loop() { // run over and over
-  if (pmSerial.available()) {
+  pm.listen();
+  //https://www.arduino.cc/en/Tutorial/TwoPortReceive
+  if (pm.available()) {
     lastData = currentData;
-    currentData = pmSerial.read();
+    currentData = pm.read();
 
     if (lastData == C_0X42 && currentData == C_0X4D) {
       //    Serial.print("new data avaiable.");
@@ -54,9 +66,11 @@ void loop() { // run over and over
 
     index++;
     //    Serial.print(c,HEX);
-    //    Serial.write(pmSerial.read());
+    //    Serial.write(mySerial.read());
 
 
+  } else {
+    Serial.println("pm is not available.");
   }
 
 }
@@ -136,6 +150,21 @@ void showData() {
   }
 
   Serial.println("");
+
+  bt.listen();
+  Serial.println("sent to bt:");
+  String data = "";
+  for (int i = 0 ; i < 24 ; i++){
+//    bt.print(rawData[i], HEX);
+    data = data + String(rawData[i], HEX);
+    Serial.print(rawData[i], HEX);
+    delay(200);
+  }
+  Serial.println("");
+  Serial.print("data:");
+  Serial.println(data);
+  bt.print(data);
+  
 
 
   delay(5000);
