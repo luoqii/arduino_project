@@ -91,7 +91,7 @@ void showData() {
   Serial.print(getData(2));
 
   {
-    Serial.print("\t[.1=");
+    Serial.print("\tcf[.1=");
     Serial.print(getData(4));
 
     Serial.print("\t2.5=");
