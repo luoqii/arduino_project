@@ -155,7 +155,7 @@ void showData() {
   Serial.println("sent to bt:");
   String data = "";
   for (int i = 0 ; i < 24 ; i++){
-//    bt.print(rawData[i], HEX);
+    bt.write(rawData[i]);
     data = data + String(rawData[i], HEX);
     Serial.print(rawData[i], HEX);
     delay(200);
@@ -163,7 +163,7 @@ void showData() {
   Serial.println("");
   Serial.print("data:");
   Serial.println(data);
-  bt.print(data);
+//  bt.print(data);
   
 
 
