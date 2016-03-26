@@ -70,7 +70,7 @@ void loop() { // run over and over
 
 
   } else {
-    Serial.println("pm is not available.");
+    //Serial.println("pm is not available.");
   }
 
 }
@@ -153,21 +153,18 @@ void showData() {
 
   bt.listen();
   Serial.println("sent to bt:");
-  String data = "";
-  for (int i = 0 ; i < 24 ; i++){
-    bt.write(rawData[i]);
-    data = data + String(rawData[i], HEX);
-    Serial.print(rawData[i], HEX);
-    delay(200);
-  }
-  Serial.println("");
-  Serial.print("data:");
-  Serial.println(data);
+//  String data = "";
+//  for (int i = 0 ; i < 24 ; i++){
+//   // bt.write(rawData[i]);
+//    data = data + String(rawData[i], HEX);
+//    Serial.print(rawData[i], HEX);
+//  }
+    bt.write(rawData, DATA_LENGTH);
+//  Serial.println("");
+//  Serial.print("data:");
+//  Serial.println(data);
 //  bt.print(data);
-  
-
-
-  delay(5000);
+  delay(1000);
 }
 
 int getData(int startIndex) {
