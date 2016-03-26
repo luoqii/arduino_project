@@ -22,9 +22,9 @@ void setup() {
   // set the data rate for the SoftwareSerial port
   pm.begin(BAUD);
 
-      Serial.println("bt begin");
-      bt.begin(BAUD);
-      Serial.println("bt begin finish.");
+  Serial.println("bt begin");
+  bt.begin(BAUD);
+  Serial.println("bt begin finish.");
 }
 
 void loop() { // run over and over
