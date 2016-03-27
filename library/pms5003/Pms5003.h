@@ -13,6 +13,12 @@
 
 #define PM_DATA_LENTH 28
 
+// sadlly, i must skip this memory on my Anduino uno(r3).
+// always, y should NOT need this.
+#ifndef BAD_DATA_LENGTH
+#define BAD_DATA_LENGTH 0
+#endif
+
 class Pms5003
 {
   public:
@@ -47,8 +53,7 @@ class Pms5003
     SoftwareSerial* pm;
     byte data[PM_DATA_LENTH];
     
-    // sadlly, i must skip this memory on my Anduino uno(r3).
-    static const int BAD_DATA_LENGTH = 20;
+
     byte badData[BAD_DATA_LENGTH];
 
     static const int FIRST_BYTE = 4 * 16 + 2 * 1;
