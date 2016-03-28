@@ -2,15 +2,22 @@
 #include "Pms5003.h"
 #define BAD_DATA_LENGTH 20
 /**
- * 
+ *  BT VCC  <==> UNO VCC 5v
+ *  BT GND <==> UNO GND
+ *  BT RXD <==> UNO d9
+ *  BT TXD <==> UNO d8
+ *  
+ *  PM VCC <==> UNO VCC
+ *  PM DND <==> UNO GND
+ *  PM TXD <==> d11
  */
-Pms5003 pm(11, 12);; // RX, TX
 
 #define BT_RXD 8
 #define BT_TXD 9
 #define BAUD 9600
 
 SoftwareSerial bt(BT_RXD, BT_TXD);
+Pms5003 pm(11, 12);; // RX, TX
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -43,7 +50,7 @@ void loop() { // run over and over
    Serial.println("send by bt");
    bt.write(pm.getData(), PM_DATA_LENTH);
    Serial.println("send by bt done.");
-   delay(7000);
+   delay(4000);
   } else {
     //Serial.println("pm is not available.");
   }

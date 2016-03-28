@@ -7,9 +7,9 @@ AT version;0.40.0.0(Aug  8 2015 14;45:58)
 SDK version:1.1^hnd.1:
  */
 #include <SoftwareSerial.h>
-#define SPEED 9600
+//#define SPEED 9600
 #define SPEED 115200
-SoftwareSerial WIFISerial(8, 9); // RX, TX
+SoftwareSerial WIFISerial(7, 8); // RX, TX
 void setup()
 {
   Serial.begin(SPEED);   

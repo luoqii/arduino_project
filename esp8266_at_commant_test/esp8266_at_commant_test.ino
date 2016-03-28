@@ -10,15 +10,22 @@ SDK version:1.1^hnd.1:
 #include <SoftwareSerial.h>
 #define SPEED 9600
 #define SPEED 115200
-SoftwareSerial WIFISerial(8, 9); // RX, TX
+SoftwareSerial WIFISerial(7, 8); // RX, TX
 ESP8266 wifi(WIFISerial);
 void setup()
 {
-  Serial.begin(SPEED);   
-    wifi.restart();
+  Serial.begin(SPEED); 
+   delay(3000);  
+//    wifi.restart();
+ WIFISerial.println("AT+RST");
 }
  
 void loop(){   
- 
+  WIFISerial.listen();
+ if (WIFISerial.available()){
+    Serial.write(WIFISerial.read());}
+  if (Serial.available()){
+    WIFISerial.write(Serial.read());
+}   
 }
 

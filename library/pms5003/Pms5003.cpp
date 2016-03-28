@@ -56,6 +56,8 @@ void Pms5003::loop() {
         //printData();
   	lastByte = currentByte;
         currentByte = pm->read();
+        //Serial.print("rcv:");
+        //Serial.println(currentByte, HEX);        
 
         //Serial.print("lastByte:0x");
         //Serial.println(lastByte, HEX);
@@ -89,6 +91,7 @@ void Pms5003::loop() {
 }
 
 byte* Pms5003::getData(){
+  _available = false;
   return data;
 }
 

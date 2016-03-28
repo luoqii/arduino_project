@@ -29,6 +29,11 @@ class Pms5003
     void setup();
     void loop();
     void listen();
+
+    /**
+     * return true if has pm data, if u call getData() then this will return false;
+     *
+     */
     bool available();
     void printData();
 
