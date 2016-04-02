@@ -1,4 +1,6 @@
 #include <SoftwareSerial.h>
+
+
 #include "Pms5003.h"
 #define BAD_DATA_LENGTH 20
 /**
@@ -47,9 +49,9 @@ void loop() { // run over and over
   pm.printData();
 
    bt.listen();
-   Serial.println("send by bt");
+   //Serial.println("send by bt");
    bt.write(pm.getData(), PM_DATA_LENTH);
-   Serial.println("send by bt done.");
+   //Serial.println("send by bt done.");
    delay(4000);
   } else {
     //Serial.println("pm is not available.");

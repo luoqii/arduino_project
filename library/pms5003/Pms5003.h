@@ -19,6 +19,27 @@
 #define BAD_DATA_LENGTH 0
 #endif
 
+//#define DEBUG_PM 1
+#ifdef DEBUG_PM
+#define DEBUG(arg) \
+do { \
+   Serial.print(arg); \
+} while (0);
+#define DEBUGLN(arg, format) \
+do { \
+   Serial.println(arg, format); \
+} while (0);
+#else
+#define DEBUG(arg) \
+do { \
+   ; \
+} while (0);
+#define DEBUGLN(arg, format) \
+do { \
+   ; \
+} while (0);
+#endif
+
 class Pms5003
 {
   public:

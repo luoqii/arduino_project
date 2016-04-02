@@ -8,13 +8,16 @@
 #include <SoftwareSerial.h>
 #define SPEED 9600
 #define SPEED 115200
+
 SoftwareSerial WIFISerial(8, 9); // RX, TX
+
 void setup()
 {
   Serial.begin(SPEED);
   WIFISerial.begin(SPEED);
 }
 
+// TODO
 void loop() {
   if (WIFISerial.available()) {
     Serial.print("<<<");
@@ -22,8 +25,12 @@ void loop() {
       Serial.write(WIFISerial.read());
     }  while (WIFISerial.available());
   }
+
   if (Serial.available()) {
-    WIFISerial.write(Serial.read());
+    Serial.print(">>>");
+    do {
+      WIFISerial.write(Serial.read());
+    } while (Serial.available());
   }
 }
 

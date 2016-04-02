@@ -56,8 +56,8 @@ void Pms5003::loop() {
         //printData();
   	lastByte = currentByte;
         currentByte = pm->read();
-        //Serial.print("rcv:");
-        //Serial.println(currentByte, HEX);        
+        DEBUG("rcv:");
+        DEBUGLN(currentByte, HEX);      
 
         //Serial.print("lastByte:0x");
         //Serial.println(lastByte, HEX);
@@ -100,53 +100,60 @@ bool Pms5003::available() {
 }
 
 int Pms5003::getPm1Cf() {
-  getData(4);
+  return getData(4);
 }
 
 int Pms5003::getPm2_5Cf() {
-  getData(6);
+  return getData(6);
 }
 
 int Pms5003::getPm10Cf() {
-  getData(8);
+  return getData(8);
 }
 
 int Pms5003::getPm1() {
-  getData(10);
+  return getData(10);
 }
 
 int Pms5003::getPm2_5() {
-  getData(12);
+  return getData(12);
 }
 
 int Pms5003::getPm10() {
-  getData(14);
+  return getData(14);
 }
 
 int Pms5003::getPmValue0_3() {
-  getData(16);
+  return getData(16);
 }
 int Pms5003::getPmValue0_5() {
-  getData(18);
+  return getData(18);
 }
 int Pms5003::getPmValue1() {
-  getData(20);
+  return getData(20);
 }
 int Pms5003::getPmValue2_5() {
-  getData(22);
+  return getData(22);
 }
 int Pms5003::getPmValue5() {
-  getData(24);
+  return getData(24);
 }
 int Pms5003::getPmValue10() {
-  getData(26);
+  return getData(26);
 }
 
 int Pms5003::getData(int startIndex) {
   int ret = -1;
   byte h = String(data[startIndex]).toInt();
   byte l = String(data[startIndex + 1]).toInt();
+  //Serial.print("h:");
+  //Serial.print(h);
+  //Serial.print(" l:");
+  //Serial.println(l);
   ret = h * 256 + l;
+  //Serial.print(" ret:");
+  //Serial.println(ret);
+  //ret = data[startIndex] * 256 + data[startIndex + 1];
   return ret;
 }
 
@@ -158,6 +165,40 @@ void Pms5003::printData(){
   for (int i = 0 ; i < PM_DATA_LENTH; i++) {
     Serial.print(data[i], HEX);
     Serial.print(" ");
+    if (i % 2 == 1) {
+      Serial.print("    ");
+    }
   }
+  Serial.println("");
+
+  Serial.print("cf[");
+  Serial.print(getPm1Cf());
+  Serial.print(",");
+  Serial.print(getPm2_5Cf());
+  Serial.print(",");
+  Serial.print(getPm10Cf());
+
+  Serial.print("],[");
+
+  Serial.print(getPm1());
+  Serial.print(",");
+  Serial.print(getPm2_5());
+  Serial.print(",");
+  Serial.print(getPm10());
+
+  Serial.print("],[");
+
+  Serial.print(getPmValue0_3());
+  Serial.print(",");
+  Serial.print(getPmValue0_5());
+  Serial.print(",");
+  Serial.print(getPmValue1());
+  Serial.print(",");
+  Serial.print(getPmValue2_5());
+  Serial.print(",");
+  Serial.print(getPmValue5());
+  Serial.print(",");
+  Serial.print(getPmValue10());
+  Serial.print("]");
   Serial.println("");
 }
