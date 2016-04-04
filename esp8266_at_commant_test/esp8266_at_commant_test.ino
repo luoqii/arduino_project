@@ -9,12 +9,15 @@ SDK version:1.1^hnd.1:
  #include "ESP8266.h"
 #include <SoftwareSerial.h>
 
-//#define SPEED 9600
-#define SPEED 115200
+// XXX must use 2 different speed fuck.
+#define SPEED_SERIAL 9600
+//#define SPEED_SERIAL 115200
+#define SPEED_ESP 115200
+//#define SPEED_ESP 9600
 
 SoftwareSerial WIFISerial(8, 9); // RX, TX
 // we MUST give a new speed, otherwise this will bite you.
-ESP8266 esp8266(WIFISerial, SPEED);
+ESP8266 esp8266(WIFISerial, SPEED_ESP);
 
 #define SSID "Tenda_098C40"
 #define PASSWORD "bangyuan"
@@ -22,15 +25,18 @@ ESP8266 esp8266(WIFISerial, SPEED);
 void setup()
 {  
   Serial.println("try setup.");
-  Serial.begin(SPEED); 
+  Serial.begin(SPEED_SERIAL); 
   Serial.println("begin done.");
-   delay(3000);  
-   setupESP8266();
-   esp8266.kick();
-   esp8266.restart();
 }
  
 void loop(){   
+  
+   //setupESP8266();
+   //esp8266.kick();
+   esp8266.restart();
+   delay(5000);  
+
+   
   //WIFISerial.listen();
   /*
  if (WIFISerial.available()){

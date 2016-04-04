@@ -38,15 +38,15 @@ void setup() {
 
   Bridge.begin();
 
-  haltIfSDAlreadyOnOverlay();
+  //haltIfSDAlreadyOnOverlay();
   
-  haltIfInternalFlashIsFull();
+  //haltIfInternalFlashIsFull();
 
-  haltIfSDCardIsNotPresent();
+  //haltIfSDCardIsNotPresent();
 
-  installSoftware();
+  //installSoftware();
 
-  partitionAndFormatSDCard();
+  //partitionAndFormatSDCard();
 
   createArduinoFolder();
 

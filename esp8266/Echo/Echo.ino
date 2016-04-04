@@ -17,7 +17,7 @@ SoftwareSerial WIFISerial(8, 9); // RX, TX
 
 void setup()
 {
-  Serial.begin(SPEED_SERIAL);
+  Serial.begin(SPEED_SERIAL, SERIAL_8N1);
   WIFISerial.begin(SPEED_ESP);
 
   //WIFISerial.println("AT+GMR\r\n");

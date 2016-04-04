@@ -58,7 +58,7 @@ class Pms5003
     bool available();
     void printData();
 
-    byte* getData();
+    byte* readData();
     int getPm1Cf();
     int getPm2_5Cf();
     int getPm10Cf();

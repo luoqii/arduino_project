@@ -50,7 +50,7 @@ void loop() { // run over and over
 
    bt.listen();
    //Serial.println("send by bt");
-   bt.write(pm.getData(), PM_DATA_LENTH);
+   bt.write(pm.readData(), PM_DATA_LENTH);
    //Serial.println("send by bt done.");
    delay(4000);
   } else {

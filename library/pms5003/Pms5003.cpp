@@ -90,7 +90,7 @@ void Pms5003::loop() {
   }
 }
 
-byte* Pms5003::getData(){
+byte* Pms5003::readData(){
   _available = false;
   return data;
 }
