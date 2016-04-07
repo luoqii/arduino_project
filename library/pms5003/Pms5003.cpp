@@ -144,8 +144,8 @@ int Pms5003::getPmValue10() {
 
 int Pms5003::getData(int startIndex) {
   int ret = -1;
-  byte h = String(data[startIndex]).toInt();
-  byte l = String(data[startIndex + 1]).toInt();
+  byte h = (data[startIndex]);
+  byte l = (data[startIndex + 1]);
   //Serial.print("h:");
   //Serial.print(h);
   //Serial.print(" l:");

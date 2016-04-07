@@ -52,7 +52,7 @@ void loop() { // run over and over
    //Serial.println("send by bt");
    bt.write(pm.readData(), PM_DATA_LENTH);
    //Serial.println("send by bt done.");
-   delay(4000);
+   delay(5000);
   } else {
     //Serial.println("pm is not available.");
   }
